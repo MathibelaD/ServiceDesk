@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "DPwB1V3EEeI=",
+  "success": true,
+  "projectFilePath": "/Users/ms_mathibela/Documents/PROJECTS/C#-PROGRAMMING/ServiceDesk/ServiceDesk.Api/ServiceDesk.Api.csproj",
+  "expectedPackageFiles": [
+    "/Users/ms_mathibela/.nuget/packages/microsoft.aspnetcore.openapi/10.0.11/microsoft.aspnetcore.openapi.10.0.11.nupkg.sha512",
+    "/Users/ms_mathibela/.nuget/packages/microsoft.openapi/2.7.5/microsoft.openapi.2.7.5.nupkg.sha512"
+  ],
+  "logs": []
+}
