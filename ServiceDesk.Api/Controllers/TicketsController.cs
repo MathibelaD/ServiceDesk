@@ -8,7 +8,6 @@ namespace ServiceDesk.Api.Controllers;
 
 [ApiController]
 [Route("api/tickets")]
-[Route("/api/tickets/{id}")]
 public class TicketsController : ControllerBase
 {
 
@@ -41,11 +40,13 @@ public class TicketsController : ControllerBase
 
     };
 
-    [HttpGet("{id}")]
+    [HttpGet]
     public IActionResult Get()
     {
         return Ok(tickets);
     }
+
+    [HttpGet("{id}")]
 
     public IActionResult getTicketById(int id)
     {
