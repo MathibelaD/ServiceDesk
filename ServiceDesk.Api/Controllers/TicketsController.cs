@@ -8,14 +8,11 @@ namespace ServiceDesk.Api.Controllers;
 
 [ApiController]
 [Route("api/tickets")]
+[Route("/api/tickets/{id}")]
 public class TicketsController : ControllerBase
 {
 
-    [HttpGet]
-    public IActionResult Get()
-    {
-
-    var tickets = new List<Ticket>{
+    private readonly List<Ticket> tickets = new List<Ticket>{
 
     new Ticket
         {
@@ -33,7 +30,7 @@ public class TicketsController : ControllerBase
             Status = "Open",
             CreatedAt = DateTime.UtcNow
         },
-        new Ticket
+        new()
          {
             Id = 3,
             Title  = "lost my access key",
@@ -41,9 +38,24 @@ public class TicketsController : ControllerBase
             Status = "Open",
             CreatedAt = DateTime.UtcNow
         },
-        
+
     };
 
+    [HttpGet("{id}")]
+    public IActionResult Get()
+    {
         return Ok(tickets);
+    }
+
+    public IActionResult getTicketById(int id)
+    {
+        var ticket = tickets.Find(x => x.Id == id);
+
+        if (ticket != null)
+        {
+            return Ok(ticket);
+        }
+
+        return NotFound();
     }
 }
