@@ -31,3 +31,4 @@
 /Users/ms_mathibela/Documents/PROJECTS/C#-PROGRAMMING/ServiceDesk/ServiceDesk.Api/obj/Debug/net10.0/ServiceDesk.Api.pdb
 /Users/ms_mathibela/Documents/PROJECTS/C#-PROGRAMMING/ServiceDesk/ServiceDesk.Api/obj/Debug/net10.0/ServiceDesk.Api.genruntimeconfig.cache
 /Users/ms_mathibela/Documents/PROJECTS/C#-PROGRAMMING/ServiceDesk/ServiceDesk.Api/obj/Debug/net10.0/ref/ServiceDesk.Api.dll
+/Users/ms_mathibela/Documents/PROJECTS/C#-PROGRAMMING/ServiceDesk/ServiceDesk.Api/obj/Debug/net10.0/ServiceDesk.Api.sourcelink.json
