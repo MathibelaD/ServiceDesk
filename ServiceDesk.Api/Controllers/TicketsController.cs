@@ -59,4 +59,29 @@ public class TicketsController : ControllerBase
 
         return NotFound();
     }
+
+
+    [HttpPost]
+    public IActionResult CreateTicket([FromBody] CreateTicketRequest request)
+    {
+        int nextId = tickets.Any() ? tickets.Max(t => t.Id) + 1 : 1;
+        var newTicket = new Ticket
+        {
+            Id = nextId,
+            Title = request.Title,
+            Description = request.Description,
+            Status = "Open",
+            CreatedAt = DateTime.UtcNow
+        };
+
+        tickets.Add(newTicket);
+        return CreatedAtAction(
+            nameof(getTicketById),
+            new
+            {
+                id = newTicket.Id
+            },
+            newTicket
+        );
+    }
 }
