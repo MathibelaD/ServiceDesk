@@ -61,4 +61,20 @@ public class TicketService
         tickets.Add(newTicket);
         return newTicket;
     }
+
+    public Ticket? UpdateTicket(int id, UpdateTicketRequest data)
+    {
+        //find the ticket you need to update
+        var ticket = tickets.Find(i => i.Id == id);
+
+        if (ticket != null)
+        {
+            ticket.Title = data.Title;
+            ticket.Description = data.Description;
+
+            return ticket;
+        }
+
+        return null;
+    }
 }

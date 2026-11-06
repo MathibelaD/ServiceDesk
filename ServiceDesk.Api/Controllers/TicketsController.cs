@@ -14,7 +14,8 @@ public class TicketsController : ControllerBase
 
     private readonly TicketService ticketService;
 
-    public TicketsController(TicketService ticketService) {
+    public TicketsController(TicketService ticketService)
+    {
         this.ticketService = ticketService;
     }
     [HttpGet]
@@ -51,5 +52,19 @@ public class TicketsController : ControllerBase
             },
             newTicket
         );
+    }
+
+    [HttpPut("{id}")]
+    public IActionResult UpdateTicket(int id, UpdateTicketRequest request)
+    {
+
+        var updatedTicket = ticketService.UpdateTicket(id, request);
+
+        if (updatedTicket == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(updatedTicket);
     }
 }
