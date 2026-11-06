@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 using ServiceDesk.Api.Models;
+using ServiceDesk.Api.Services;
 
 namespace ServiceDesk.Api.Controllers;
 
@@ -11,38 +12,15 @@ namespace ServiceDesk.Api.Controllers;
 public class TicketsController : ControllerBase
 {
 
-    private readonly List<Ticket> tickets = new List<Ticket>{
+    private readonly TicketService ticketService;
 
-    new Ticket
-        {
-            Id = 1,
-            Title  = "Laptop wont start",
-            Description = "Laptop wont power on",
-            Status = "Open",
-            CreatedAt = DateTime.UtcNow
-        },
-        new Ticket
-         {
-            Id = 2,
-            Title  = "forgot my password",
-            Description = "Forgot my password and i cant reset it",
-            Status = "Open",
-            CreatedAt = DateTime.UtcNow
-        },
-        new()
-         {
-            Id = 3,
-            Title  = "lost my access key",
-            Description = "i need a new access key to access the building i lost mine",
-            Status = "Open",
-            CreatedAt = DateTime.UtcNow
-        },
-
-    };
-
+    public TicketsController(TicketService ticketService) {
+        this.ticketService = ticketService;
+    }
     [HttpGet]
     public IActionResult Get()
     {
+        var tickets = ticketService.GetAllTickets();
         return Ok(tickets);
     }
 
@@ -50,7 +28,7 @@ public class TicketsController : ControllerBase
 
     public IActionResult getTicketById(int id)
     {
-        var ticket = tickets.Find(x => x.Id == id);
+        var ticket = ticketService.GetTicketById(id);
 
         if (ticket != null)
         {
@@ -64,19 +42,9 @@ public class TicketsController : ControllerBase
     [HttpPost]
     public IActionResult CreateTicket([FromBody] CreateTicketRequest request)
     {
-        int nextId = tickets.Any() ? tickets.Max(t => t.Id) + 1 : 1;
-        var newTicket = new Ticket
-        {
-            Id = nextId,
-            Title = request.Title,
-            Description = request.Description,
-            Status = "Open",
-            CreatedAt = DateTime.UtcNow
-        };
-
-        tickets.Add(newTicket);
+        var newTicket = ticketService.CreateNewTicket(request);
         return CreatedAtAction(
-            nameof(getTicketById),
+            nameof(ticketService.GetTicketById),
             new
             {
                 id = newTicket.Id
