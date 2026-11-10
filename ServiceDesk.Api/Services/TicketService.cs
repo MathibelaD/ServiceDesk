@@ -77,4 +77,22 @@ public class TicketService
 
         return null;
     }
+
+    public bool DeleteTicket(int id)
+    {
+
+    Console.WriteLine($"Trying to delete ticket ID: {id}");
+        var ticket = tickets.Find(i => i.Id == id);
+
+        Console.WriteLine($"Ticket found: {ticket != null}");
+
+        if (ticket != null)
+        {
+            bool deleted = tickets.Remove(ticket);
+
+            return true;
+        }
+
+        return false;
+    }
 }

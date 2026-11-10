@@ -67,4 +67,18 @@ public class TicketsController : ControllerBase
 
         return Ok(updatedTicket);
     }
+
+    [HttpDelete("{id}")]
+    public IActionResult DeleteTicket(int id){
+
+        var deleted = ticketService.DeleteTicket(id);
+        if (deleted)
+        {
+            return NoContent();
+        }
+        else
+        {
+            return NotFound();
+        }
+    }
 }
