@@ -81,7 +81,7 @@ public class TicketService
     public bool DeleteTicket(int id)
     {
 
-    Console.WriteLine($"Trying to delete ticket ID: {id}");
+        Console.WriteLine($"Trying to delete ticket ID: {id}");
         var ticket = tickets.Find(i => i.Id == id);
 
         Console.WriteLine($"Ticket found: {ticket != null}");
@@ -94,5 +94,11 @@ public class TicketService
         }
 
         return false;
+    }
+
+
+    public void SimulateError()
+    {
+        throw new Exception("Simulated Service failure");
     }
 }
